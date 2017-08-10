@@ -1,53 +1,65 @@
 ---
 general:
-  healthcheckEvery: 2s
+  healthcheckEvery: 60s
   httpClientTimeout: 5s
   refreshDashboardEvery: 5s
 groups:
-  - name: Frontend (us-east-1)
+  - name: Community Services
     nodes:
-      - name: front-1 (current)
-        endpoint: https://httpbin.org/basic-auth/username/password
+      - name: Monappy
+        endpoint: https://monappy.jp
         type: http_check
-        parameters:
-          expectedPattern: "\"authenticated\": true"
-          basicAuthUsername: username
-          basicAuthPassword: password
-      - name: front-2a (deprecated)
-        endpoint: https://www.example.com/
-        expectedPattern: Example
-      - name: front-2b (deprecated)
-        endpoint: https://www.example.com/
-        expectedPattern: WillNotFindThis
-      - name: front-2c (current)
-        endpoint: https://www.example.com/
-        parameters:
-          expectedPattern: WillNotFindThis
-      - name: front-3
-        type: sample_check
-        parameters:
-          greenDay: 21
-  - name: Middleware (us-west-2)
+      - name: Mastodon for Monappy
+        endpoint: https://mstdn.monappy.jp
+        type: http_check
+      - name: AskMona
+        endpoint: http://askmona.org/
+        type: http_check
+      - name: PinkMona (Caution! R18)
+        endpoint: http://pinkmona.org/
+        type: http_check
+  - name: Blockchain Explorers
     nodes:
-      - name: middleware-1 master host
-        endpoint: https://www.example.com/
-      - name: localhost
-        endpoint: 127.0.0.1
-        type: ping_check
-      - name: Wirtualna Polska
-        endpoint: wp.pl
-        type: ping_check
-      - name: middleware-4
-        endpoint: 874397492374qwerty.pl
-        type: ping_check
-      - name: middleware-5
-        endpoint: https://www.example.com/
-  - name: Backend (us-west-2)
+      - name: Monaco-ex.org
+        endpoint: https://mona.insight.monaco-ex.org/insight/
+        type: http_check
+      - name: Bhcain.info
+        endpoint: https://bchain.info/MONA/
+        type: http_check
+      - name: Chainsight.info
+        endpoint: https://mona.chainsight.info/
+        type: http_check
+      - name: Multi Light Block Explorer
+        endpoint: http://namuyan.dip.jp/MultiLightBlockExplorer/index.php?page=selectcoin&coin=mona
+        type: http_check
+  - name: Exchanges
     nodes:
-      - name: backend-1 master host
-        endpoint: google.com:443
-        type: tls_check
-      - name: backend-2
-        endpoint: https://1234567890.example.com/
-      - name: backend-3
-        endpoint: https://www.example.com/
+      - name: Zaif (MONA/BTC)
+        endpoint: https://zaif.jp/trade_mona_btc
+        type: http_check
+      - name: Zaif (MONA/JPY)
+        endpoint: https://zaif.jp/trade_mona_jpy
+        type: http_check
+      - name: Bitbank.cc
+        endpoint: https://bitbank.cc/
+        type: http_check
+  - name: Online Wallets
+    nodes:
+      - name: monacoin.jp
+        endpoint: https://monacoin.jp/
+        type: http_check
+  - name: Market Analysis
+    nodes:
+      - name: Monacoin Charts
+        endpoint: http://mona-coin.com/
+        type: http_check
+  - name: Electrum servers
+    nodes:
+      - name: Tamami Foundation (ping)
+        endpoint: electrumx.tamami-foundation.org
+        type: ping_check
+  - name: Official Site
+    nodes:
+      - name: Monacoin Project
+        endpoint: https://monacoin.org/
+        type: http_check
